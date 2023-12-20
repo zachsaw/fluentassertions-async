@@ -2,11 +2,11 @@
 using System.Reflection;
 using AssemblyA;
 using AssemblyB;
-using FluentAssertions.Specs.Types;
+using FluentAssertionsAsync.Specs.Types;
 using Xunit;
 using Xunit.Sdk;
 
-namespace FluentAssertions.Specs.Specialized;
+namespace FluentAssertionsAsync.Specs.Specialized;
 
 public class AssemblyAssertionSpecs
 {

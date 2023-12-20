@@ -1,14 +1,15 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Xunit;
 
-namespace FluentAssertions.Equivalency.Specs;
+namespace FluentAssertionsAsync.Equivalency.Specs;
 
 public partial class SelectionRulesSpecs
 {
     public class MemberHiding
     {
         [Fact]
-        public void Ignores_properties_hidden_by_the_derived_class()
+        public async Task Ignores_properties_hidden_by_the_derived_class()
         {
             // Arrange
             var subject = new SubclassAHidingProperty<string>
@@ -26,11 +27,11 @@ public partial class SelectionRulesSpecs
             ((AnotherBaseWithProperty)expectation).Property = "ExpectedBaseValue";
 
             // Act / Assert
-            subject.Should().BeEquivalentTo(expectation);
+            await subject.Should().BeEquivalentToAsync(expectation);
         }
 
         [Fact]
-        public void Ignores_properties_of_the_same_runtime_types_hidden_by_the_derived_class()
+        public async Task Ignores_properties_of_the_same_runtime_types_hidden_by_the_derived_class()
         {
             // Arrange
             var subject = new SubclassHidingStringProperty
@@ -48,11 +49,11 @@ public partial class SelectionRulesSpecs
             ((BaseWithStringProperty)expectation).Property = "ExpectedBaseValue";
 
             // Act / Assert
-            subject.Should().BeEquivalentTo(expectation);
+            await subject.Should().BeEquivalentToAsync(expectation);
         }
 
         [Fact]
-        public void Includes_hidden_property_of_the_base_when_using_a_reference_to_the_base()
+        public async Task Includes_hidden_property_of_the_base_when_using_a_reference_to_the_base()
         {
             // Arrange
             BaseWithProperty subject = new SubclassAHidingProperty<string>
@@ -73,11 +74,11 @@ public partial class SelectionRulesSpecs
             expectation.Property = "BaseValue";
 
             // Act / Assert
-            subject.Should().BeEquivalentTo(expectation);
+            await subject.Should().BeEquivalentToAsync(expectation);
         }
 
         [Fact]
-        public void Run_type_typing_ignores_hidden_properties_even_when_using_a_reference_to_the_base_class()
+        public async Task Run_type_typing_ignores_hidden_properties_even_when_using_a_reference_to_the_base_class()
         {
             // Arrange
             var subject = new SubclassAHidingProperty<string>
@@ -95,11 +96,11 @@ public partial class SelectionRulesSpecs
             expectation.Property = "ExpectedBaseValue";
 
             // Act / Assert
-            subject.Should().BeEquivalentTo(expectation, o => o.RespectingRuntimeTypes());
+            await subject.Should().BeEquivalentToAsync(expectation, o => o.RespectingRuntimeTypes());
         }
 
         [Fact]
-        public void Including_the_derived_property_excludes_the_hidden_property()
+        public async Task Including_the_derived_property_excludes_the_hidden_property()
         {
             // Arrange
             var subject = new SubclassAHidingProperty<string>
@@ -117,12 +118,12 @@ public partial class SelectionRulesSpecs
             ((AnotherBaseWithProperty)expectation).Property = "ExpectedBaseValue";
 
             // Act / Assert
-            subject.Should().BeEquivalentTo(expectation, opt => opt
+            await subject.Should().BeEquivalentToAsync(expectation, opt => opt
                 .Including(o => o.Property));
         }
 
         [Fact]
-        public void Excluding_the_property_hiding_the_base_class_one_does_not_reveal_the_latter()
+        public async Task Excluding_the_property_hiding_the_base_class_one_does_not_reveal_the_latter()
         {
             // Arrange
             var subject = new SubclassAHidingProperty<string>();
@@ -134,11 +135,11 @@ public partial class SelectionRulesSpecs
             ((AnotherBaseWithProperty)expectation).Property = "ExpectedBaseValue";
 
             // Act
-            Action act = () => subject.Should().BeEquivalentTo(expectation, o => o
+            Func<Task> act = () => subject.Should().BeEquivalentToAsync(expectation, o => o
                 .Excluding(b => b.Property));
 
             // Assert
-            act.Should().Throw<InvalidOperationException>().WithMessage("*No members were found *");
+            await act.Should().ThrowAsync<InvalidOperationException>().WithMessage("*No members were found *");
         }
 
         private class BaseWithProperty
@@ -176,7 +177,7 @@ public partial class SelectionRulesSpecs
         }
 
         [Fact]
-        public void Ignores_fields_hidden_by_the_derived_class()
+        public async Task Ignores_fields_hidden_by_the_derived_class()
         {
             // Arrange
             var subject = new SubclassAHidingField
@@ -194,11 +195,11 @@ public partial class SelectionRulesSpecs
             ((AnotherBaseWithField)expectation).Field = "ExpectedBaseValue";
 
             // Act / Assert
-            subject.Should().BeEquivalentTo(expectation, options => options.IncludingFields());
+            await subject.Should().BeEquivalentToAsync(expectation, options => options.IncludingFields());
         }
 
         [Fact]
-        public void Includes_hidden_field_of_the_base_when_using_a_reference_to_the_base()
+        public async Task Includes_hidden_field_of_the_base_when_using_a_reference_to_the_base()
         {
             // Arrange
             BaseWithField subject = new SubclassAHidingField
@@ -219,11 +220,11 @@ public partial class SelectionRulesSpecs
             expectation.Field = "BaseValueFromExpectation";
 
             // Act / Assert
-            subject.Should().BeEquivalentTo(expectation, options => options.IncludingFields());
+            await subject.Should().BeEquivalentToAsync(expectation, options => options.IncludingFields());
         }
 
         [Fact]
-        public void Run_type_typing_ignores_hidden_fields_even_when_using_a_reference_to_the_base_class()
+        public async Task Run_type_typing_ignores_hidden_fields_even_when_using_a_reference_to_the_base_class()
         {
             // Arrange
             var subject = new SubclassAHidingField
@@ -241,11 +242,11 @@ public partial class SelectionRulesSpecs
             expectation.Field = "ExpectedBaseValue";
 
             // Act / Assert
-            subject.Should().BeEquivalentTo(expectation, options => options.IncludingFields().RespectingRuntimeTypes());
+            await subject.Should().BeEquivalentToAsync(expectation, options => options.IncludingFields().RespectingRuntimeTypes());
         }
 
         [Fact]
-        public void Including_the_derived_field_excludes_the_hidden_field()
+        public async Task Including_the_derived_field_excludes_the_hidden_field()
         {
             // Arrange
             var subject = new SubclassAHidingField
@@ -263,13 +264,13 @@ public partial class SelectionRulesSpecs
             ((AnotherBaseWithField)expectation).Field = "ExpectedBaseValue";
 
             // Act / Assert
-            subject.Should().BeEquivalentTo(expectation, options => options
+            await subject.Should().BeEquivalentToAsync(expectation, options => options
                 .IncludingFields()
                 .Including(o => o.Field));
         }
 
         [Fact]
-        public void Excluding_the_field_hiding_the_base_class_one_does_not_reveal_the_latter()
+        public async Task Excluding_the_field_hiding_the_base_class_one_does_not_reveal_the_latter()
         {
             // Arrange
             var subject = new SubclassAHidingField();
@@ -281,12 +282,12 @@ public partial class SelectionRulesSpecs
             ((AnotherBaseWithField)expectation).Field = "ExpectedBaseValue";
 
             // Act
-            Action act = () => subject.Should().BeEquivalentTo(expectation, options => options
+            Func<Task> act = () => subject.Should().BeEquivalentToAsync(expectation, options => options
                 .IncludingFields()
                 .Excluding(b => b.Field));
 
             // Assert
-            act.Should().Throw<InvalidOperationException>().WithMessage("*No members were found *");
+            await act.Should().ThrowAsync<InvalidOperationException>().WithMessage("*No members were found *");
         }
 
         private class BaseWithField

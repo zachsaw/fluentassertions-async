@@ -1,9 +1,9 @@
 ﻿using System;
-using FluentAssertions.Collections;
+using FluentAssertionsAsync.Collections;
 using Xunit;
 using Xunit.Sdk;
 
-namespace FluentAssertions.Specs;
+namespace FluentAssertionsAsync.Specs;
 
 public class AndWhichConstraintSpecs
 {

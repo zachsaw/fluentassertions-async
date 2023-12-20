@@ -1,10 +1,10 @@
 ﻿using System;
-using FluentAssertions.Execution;
-using FluentAssertions.Extensions;
+using FluentAssertionsAsync.Execution;
+using FluentAssertionsAsync.Extensions;
 using Xunit;
 using Xunit.Sdk;
 
-namespace FluentAssertions.Specs;
+namespace FluentAssertionsAsync.Specs;
 
 public class OccurrenceConstraintSpecs
 {

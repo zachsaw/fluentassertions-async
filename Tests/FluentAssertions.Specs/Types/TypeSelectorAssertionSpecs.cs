@@ -2,11 +2,11 @@
 using DummyNamespace;
 using DummyNamespace.InnerDummyNamespace;
 using DummyNamespaceTwo;
-using FluentAssertions.Types;
+using FluentAssertionsAsync.Types;
 using Xunit;
 using Xunit.Sdk;
 
-namespace FluentAssertions.Specs.Types;
+namespace FluentAssertionsAsync.Specs.Types;
 
 public class TypeSelectorAssertionSpecs
 {

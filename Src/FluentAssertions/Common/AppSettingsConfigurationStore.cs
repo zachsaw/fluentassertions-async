@@ -5,7 +5,7 @@
 
 using System.Configuration;
 
-namespace FluentAssertions.Common;
+namespace FluentAssertionsAsync.Common;
 
 internal class AppSettingsConfigurationStore : IConfigurationStore
 {

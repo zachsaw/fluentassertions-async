@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Threading.Tasks;
-using FluentAssertions.Execution;
-using FluentAssertions.Extensions;
+using FluentAssertionsAsync.Execution;
+using FluentAssertionsAsync.Extensions;
 #if NET47
-using FluentAssertions.Specs.Common;
+using FluentAssertionsAsync.Specs.Common;
 #endif
-using FluentAssertions.Specs.Exceptions;
+using FluentAssertionsAsync.Specs.Exceptions;
 using Xunit;
 using Xunit.Sdk;
-using static FluentAssertions.FluentActions;
+using static FluentAssertionsAsync.FluentActions;
 
-namespace FluentAssertions.Specs.Specialized;
+namespace FluentAssertionsAsync.Specs.Specialized;
 
 public static class TaskOfTAssertionSpecs
 {

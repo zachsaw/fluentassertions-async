@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using FluentAssertions.Extensions;
-using FluentAssertions.Specialized;
+using FluentAssertionsAsync.Extensions;
+using FluentAssertionsAsync.Specialized;
 using Xunit;
 using Xunit.Sdk;
 
-namespace FluentAssertions.Specs.Specialized;
+namespace FluentAssertionsAsync.Specs.Specialized;
 
 public class ExecutionTimeAssertionsSpecs
 {

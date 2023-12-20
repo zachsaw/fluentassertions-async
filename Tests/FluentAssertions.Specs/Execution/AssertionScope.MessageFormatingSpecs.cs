@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
-using FluentAssertions.Execution;
+using FluentAssertionsAsync.Execution;
 using Xunit;
 using Xunit.Sdk;
 
-namespace FluentAssertions.Specs.Execution;
+namespace FluentAssertionsAsync.Specs.Execution;
 
 /// <content>
 /// The message formatting specs.

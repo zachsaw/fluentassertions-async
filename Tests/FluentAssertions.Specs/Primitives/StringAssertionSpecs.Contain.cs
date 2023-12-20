@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using Xunit;
 using Xunit.Sdk;
 
-namespace FluentAssertions.Specs.Primitives;
+namespace FluentAssertionsAsync.Specs.Primitives;
 
 /// <content>
 /// The [Not]Contain specs.

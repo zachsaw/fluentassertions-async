@@ -1,16 +1,17 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using Xunit;
 using Xunit.Sdk;
 
-namespace FluentAssertions.Equivalency.Specs;
+namespace FluentAssertionsAsync.Equivalency.Specs;
 
 public partial class SelectionRulesSpecs
 {
     public class Browsability
     {
         [Fact]
-        public void When_browsable_field_differs_excluding_non_browsable_members_should_not_affect_result()
+        public async Task When_browsable_field_differs_excluding_non_browsable_members_should_not_affect_result()
         {
             // Arrange
             var subject = new ClassWithNonBrowsableMembers
@@ -24,15 +25,15 @@ public partial class SelectionRulesSpecs
             };
 
             // Act
-            Action action =
-                () => subject.Should().BeEquivalentTo(expectation, config => config.ExcludingNonBrowsableMembers());
+            Func<Task> action =
+                () => subject.Should().BeEquivalentToAsync(expectation, config => config.ExcludingNonBrowsableMembers());
 
             // Assert
-            action.Should().Throw<XunitException>();
+            await action.Should().ThrowAsync<XunitException>();
         }
 
         [Fact]
-        public void When_browsable_property_differs_excluding_non_browsable_members_should_not_affect_result()
+        public async Task When_browsable_property_differs_excluding_non_browsable_members_should_not_affect_result()
         {
             // Arrange
             var subject = new ClassWithNonBrowsableMembers
@@ -46,15 +47,15 @@ public partial class SelectionRulesSpecs
             };
 
             // Act
-            Action action =
-                () => subject.Should().BeEquivalentTo(expectation, config => config.ExcludingNonBrowsableMembers());
+            Func<Task> action =
+                () => subject.Should().BeEquivalentToAsync(expectation, config => config.ExcludingNonBrowsableMembers());
 
             // Assert
-            action.Should().Throw<XunitException>();
+            await action.Should().ThrowAsync<XunitException>();
         }
 
         [Fact]
-        public void When_advanced_browsable_field_differs_excluding_non_browsable_members_should_not_affect_result()
+        public async Task When_advanced_browsable_field_differs_excluding_non_browsable_members_should_not_affect_result()
         {
             // Arrange
             var subject = new ClassWithNonBrowsableMembers
@@ -68,15 +69,15 @@ public partial class SelectionRulesSpecs
             };
 
             // Act
-            Action action =
-                () => subject.Should().BeEquivalentTo(expectation, config => config.ExcludingNonBrowsableMembers());
+            Func<Task> action =
+                () => subject.Should().BeEquivalentToAsync(expectation, config => config.ExcludingNonBrowsableMembers());
 
             // Assert
-            action.Should().Throw<XunitException>();
+            await action.Should().ThrowAsync<XunitException>();
         }
 
         [Fact]
-        public void When_advanced_browsable_property_differs_excluding_non_browsable_members_should_not_affect_result()
+        public async Task When_advanced_browsable_property_differs_excluding_non_browsable_members_should_not_affect_result()
         {
             // Arrange
             var subject = new ClassWithNonBrowsableMembers
@@ -90,15 +91,15 @@ public partial class SelectionRulesSpecs
             };
 
             // Act
-            Action action =
-                () => subject.Should().BeEquivalentTo(expectation, config => config.ExcludingNonBrowsableMembers());
+            Func<Task> action =
+                () => subject.Should().BeEquivalentToAsync(expectation, config => config.ExcludingNonBrowsableMembers());
 
             // Assert
-            action.Should().Throw<XunitException>();
+            await action.Should().ThrowAsync<XunitException>();
         }
 
         [Fact]
-        public void When_explicitly_browsable_field_differs_excluding_non_browsable_members_should_not_affect_result()
+        public async Task When_explicitly_browsable_field_differs_excluding_non_browsable_members_should_not_affect_result()
         {
             // Arrange
             var subject = new ClassWithNonBrowsableMembers
@@ -112,15 +113,15 @@ public partial class SelectionRulesSpecs
             };
 
             // Act
-            Action action =
-                () => subject.Should().BeEquivalentTo(expectation, config => config.ExcludingNonBrowsableMembers());
+            Func<Task> action =
+                () => subject.Should().BeEquivalentToAsync(expectation, config => config.ExcludingNonBrowsableMembers());
 
             // Assert
-            action.Should().Throw<XunitException>();
+            await action.Should().ThrowAsync<XunitException>();
         }
 
         [Fact]
-        public void When_explicitly_browsable_property_differs_excluding_non_browsable_members_should_not_affect_result()
+        public async Task When_explicitly_browsable_property_differs_excluding_non_browsable_members_should_not_affect_result()
         {
             // Arrange
             var subject = new ClassWithNonBrowsableMembers
@@ -134,15 +135,15 @@ public partial class SelectionRulesSpecs
             };
 
             // Act
-            Action action =
-                () => subject.Should().BeEquivalentTo(expectation, config => config.ExcludingNonBrowsableMembers());
+            Func<Task> action =
+                () => subject.Should().BeEquivalentToAsync(expectation, config => config.ExcludingNonBrowsableMembers());
 
             // Assert
-            action.Should().Throw<XunitException>();
+            await action.Should().ThrowAsync<XunitException>();
         }
 
         [Fact]
-        public void When_non_browsable_field_differs_excluding_non_browsable_members_should_make_it_succeed()
+        public async Task When_non_browsable_field_differs_excluding_non_browsable_members_should_make_it_succeed()
         {
             // Arrange
             var subject = new ClassWithNonBrowsableMembers
@@ -156,11 +157,11 @@ public partial class SelectionRulesSpecs
             };
 
             // Act & Assert
-            subject.Should().BeEquivalentTo(expectation, config => config.ExcludingNonBrowsableMembers());
+            await subject.Should().BeEquivalentToAsync(expectation, config => config.ExcludingNonBrowsableMembers());
         }
 
         [Fact]
-        public void When_non_browsable_property_differs_excluding_non_browsable_members_should_make_it_succeed()
+        public async Task When_non_browsable_property_differs_excluding_non_browsable_members_should_make_it_succeed()
         {
             // Arrange
             var subject = new ClassWithNonBrowsableMembers
@@ -174,11 +175,11 @@ public partial class SelectionRulesSpecs
             };
 
             // Act & Assert
-            subject.Should().BeEquivalentTo(expectation, config => config.ExcludingNonBrowsableMembers());
+            await subject.Should().BeEquivalentToAsync(expectation, config => config.ExcludingNonBrowsableMembers());
         }
 
         [Fact]
-        public void When_property_is_non_browsable_only_in_subject_excluding_non_browsable_members_should_not_make_it_succeed()
+        public async Task When_property_is_non_browsable_only_in_subject_excluding_non_browsable_members_should_not_make_it_succeed()
         {
             // Arrange
             var subject =
@@ -194,16 +195,16 @@ public partial class SelectionRulesSpecs
                 };
 
             // Act
-            Action action =
-                () => subject.Should().BeEquivalentTo(expectation, config => config.ExcludingNonBrowsableMembers());
+            Func<Task> action =
+                () => subject.Should().BeEquivalentToAsync(expectation, config => config.ExcludingNonBrowsableMembers());
 
             // Assert
-            action.Should().Throw<XunitException>()
+            await action.Should().ThrowAsync<XunitException>()
                 .WithMessage("Expected property subject.PropertyThatMightBeNonBrowsable to be 1, but found 0.*");
         }
 
         [Fact]
-        public void
+        public async Task
             When_property_is_non_browsable_only_in_subject_ignoring_non_browsable_members_on_subject_should_make_it_succeed()
         {
             // Arrange
@@ -220,13 +221,13 @@ public partial class SelectionRulesSpecs
                 };
 
             // Act & Assert
-            subject.Should().BeEquivalentTo(
+            await subject.Should().BeEquivalentToAsync(
                 expectation,
                 config => config.IgnoringNonBrowsableMembersOnSubject().ExcludingMissingMembers());
         }
 
         [Fact]
-        public void When_non_browsable_property_on_subject_is_ignored_but_is_present_on_expectation_it_should_fail()
+        public async Task When_non_browsable_property_on_subject_is_ignored_but_is_present_on_expectation_it_should_fail()
         {
             // Arrange
             var subject =
@@ -242,17 +243,17 @@ public partial class SelectionRulesSpecs
                 };
 
             // Act
-            Action action =
-                () => subject.Should().BeEquivalentTo(expectation, config => config.IgnoringNonBrowsableMembersOnSubject());
+            Func<Task> action =
+                () => subject.Should().BeEquivalentToAsync(expectation, config => config.IgnoringNonBrowsableMembersOnSubject());
 
             // Assert
-            action.Should().Throw<XunitException>().WithMessage(
+            await action.Should().ThrowAsync<XunitException>().WithMessage(
                 "Expectation has * subject.*ThatMightBeNonBrowsable that is non-browsable in the other object, and non-browsable " +
                 "members on the subject are ignored with the current configuration*");
         }
 
         [Fact]
-        public void Only_ignore_non_browsable_matching_members()
+        public async Task Only_ignore_non_browsable_matching_members()
         {
             // Arrange
             var subject = new
@@ -266,14 +267,14 @@ public partial class SelectionRulesSpecs
             };
 
             // Act
-            Action action = () => subject.Should().BeEquivalentTo(expectation, config => config.IgnoringNonBrowsableMembersOnSubject());
+            Func<Task> action = () => subject.Should().BeEquivalentToAsync(expectation, config => config.IgnoringNonBrowsableMembersOnSubject());
 
             // Assert
-            action.Should().Throw<XunitException>();
+            await action.Should().ThrowAsync<XunitException>();
         }
 
         [Fact]
-        public void When_property_is_non_browsable_only_in_expectation_excluding_non_browsable_members_should_make_it_succeed()
+        public async Task When_property_is_non_browsable_only_in_expectation_excluding_non_browsable_members_should_make_it_succeed()
         {
             // Arrange
             var subject = new ClassWhereMemberThatCouldBeNonBrowsableIsBrowsable
@@ -288,11 +289,11 @@ public partial class SelectionRulesSpecs
                 };
 
             // Act & Assert
-            subject.Should().BeEquivalentTo(expectation, config => config.ExcludingNonBrowsableMembers());
+            await subject.Should().BeEquivalentToAsync(expectation, config => config.ExcludingNonBrowsableMembers());
         }
 
         [Fact]
-        public void When_field_is_non_browsable_only_in_subject_excluding_non_browsable_members_should_not_make_it_succeed()
+        public async Task When_field_is_non_browsable_only_in_subject_excluding_non_browsable_members_should_not_make_it_succeed()
         {
             // Arrange
             var subject =
@@ -308,16 +309,16 @@ public partial class SelectionRulesSpecs
                 };
 
             // Act
-            Action action =
-                () => subject.Should().BeEquivalentTo(expectation, config => config.ExcludingNonBrowsableMembers());
+            Func<Task> action =
+                () => subject.Should().BeEquivalentToAsync(expectation, config => config.ExcludingNonBrowsableMembers());
 
             // Assert
-            action.Should().Throw<XunitException>()
+            await action.Should().ThrowAsync<XunitException>()
                 .WithMessage("Expected field subject.FieldThatMightBeNonBrowsable to be 1, but found 0.*");
         }
 
         [Fact]
-        public void When_field_is_non_browsable_only_in_subject_ignoring_non_browsable_members_on_subject_should_make_it_succeed()
+        public async Task When_field_is_non_browsable_only_in_subject_ignoring_non_browsable_members_on_subject_should_make_it_succeed()
         {
             // Arrange
             var subject =
@@ -333,13 +334,13 @@ public partial class SelectionRulesSpecs
                 };
 
             // Act & Assert
-            subject.Should().BeEquivalentTo(
+            await subject.Should().BeEquivalentToAsync(
                 expectation,
                 config => config.IgnoringNonBrowsableMembersOnSubject().ExcludingMissingMembers());
         }
 
         [Fact]
-        public void When_field_is_non_browsable_only_in_expectation_excluding_non_browsable_members_should_make_it_succeed()
+        public async Task When_field_is_non_browsable_only_in_expectation_excluding_non_browsable_members_should_make_it_succeed()
         {
             // Arrange
             var subject = new ClassWhereMemberThatCouldBeNonBrowsableIsBrowsable
@@ -354,11 +355,11 @@ public partial class SelectionRulesSpecs
                 };
 
             // Act & Assert
-            subject.Should().BeEquivalentTo(expectation, config => config.ExcludingNonBrowsableMembers());
+            await subject.Should().BeEquivalentToAsync(expectation, config => config.ExcludingNonBrowsableMembers());
         }
 
         [Fact]
-        public void When_property_is_missing_from_subject_excluding_non_browsable_members_should_make_it_succeed()
+        public async Task When_property_is_missing_from_subject_excluding_non_browsable_members_should_make_it_succeed()
         {
             // Arrange
             var subject =
@@ -387,11 +388,11 @@ public partial class SelectionRulesSpecs
             };
 
             // Act & Assert
-            subject.Should().BeEquivalentTo(expected, opt => opt.ExcludingNonBrowsableMembers());
+            await subject.Should().BeEquivalentToAsync(expected, opt => opt.ExcludingNonBrowsableMembers());
         }
 
         [Fact]
-        public void When_field_is_missing_from_subject_excluding_non_browsable_members_should_make_it_succeed()
+        public async Task When_field_is_missing_from_subject_excluding_non_browsable_members_should_make_it_succeed()
         {
             // Arrange
             var subject =
@@ -420,11 +421,11 @@ public partial class SelectionRulesSpecs
             };
 
             // Act & Assert
-            subject.Should().BeEquivalentTo(expected, opt => opt.ExcludingNonBrowsableMembers());
+            await subject.Should().BeEquivalentToAsync(expected, opt => opt.ExcludingNonBrowsableMembers());
         }
 
         [Fact]
-        public void When_property_is_missing_from_expectation_excluding_non_browsable_members_should_make_it_succeed()
+        public async Task When_property_is_missing_from_expectation_excluding_non_browsable_members_should_make_it_succeed()
         {
             // Arrange
             var subject = new ClassWithNonBrowsableMembers
@@ -453,11 +454,11 @@ public partial class SelectionRulesSpecs
                 };
 
             // Act & Assert
-            subject.Should().BeEquivalentTo(expected, opt => opt.ExcludingNonBrowsableMembers());
+            await subject.Should().BeEquivalentToAsync(expected, opt => opt.ExcludingNonBrowsableMembers());
         }
 
         [Fact]
-        public void When_field_is_missing_from_expectation_excluding_non_browsable_members_should_make_it_succeed()
+        public async Task When_field_is_missing_from_expectation_excluding_non_browsable_members_should_make_it_succeed()
         {
             // Arrange
             var subject = new ClassWithNonBrowsableMembers
@@ -486,11 +487,11 @@ public partial class SelectionRulesSpecs
                 };
 
             // Act & Assert
-            subject.Should().BeEquivalentTo(expected, opt => opt.ExcludingNonBrowsableMembers());
+            await subject.Should().BeEquivalentToAsync(expected, opt => opt.ExcludingNonBrowsableMembers());
         }
 
         [Fact]
-        public void
+        public async Task
             When_non_browsable_members_are_excluded_it_should_still_be_possible_to_explicitly_include_non_browsable_field()
         {
             // Arrange
@@ -505,18 +506,18 @@ public partial class SelectionRulesSpecs
             };
 
             // Act
-            Action action =
-                () => subject.Should().BeEquivalentTo(
+            Func<Task> action =
+                () => subject.Should().BeEquivalentToAsync(
                     expectation,
                     opt => opt.IncludingFields().ExcludingNonBrowsableMembers().Including(e => e.NonBrowsableField));
 
             // Assert
-            action.Should().Throw<XunitException>()
+            await action.Should().ThrowAsync<XunitException>()
                 .WithMessage("Expected field subject.NonBrowsableField to be 2, but found 1.*");
         }
 
         [Fact]
-        public void
+        public async Task
             When_non_browsable_members_are_excluded_it_should_still_be_possible_to_explicitly_include_non_browsable_property()
         {
             // Arrange
@@ -531,13 +532,13 @@ public partial class SelectionRulesSpecs
             };
 
             // Act
-            Action action =
-                () => subject.Should().BeEquivalentTo(
+            Func<Task> action =
+                () => subject.Should().BeEquivalentToAsync(
                     expectation,
                     opt => opt.IncludingProperties().ExcludingNonBrowsableMembers().Including(e => e.NonBrowsableProperty));
 
             // Assert
-            action.Should().Throw<XunitException>()
+            await action.Should().ThrowAsync<XunitException>()
                 .WithMessage("Expected property subject.NonBrowsableProperty to be 2, but found 1.*");
         }
 

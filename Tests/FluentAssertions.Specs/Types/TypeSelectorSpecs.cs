@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using FluentAssertions.Types;
+using FluentAssertionsAsync.Types;
 using Internal.AbstractAndNotAbstractClasses.Test;
 using Internal.InterfaceAndClasses.Test;
 using Internal.Main.Test;
@@ -17,7 +17,7 @@ using Internal.UnwrapSelectorTestTypes.Test;
 using Internal.ValueTypesAndNotValueTypes.Test;
 using Xunit;
 
-namespace FluentAssertions.Specs.Types
+namespace FluentAssertionsAsync.Specs.Types
 {
     public class TypeSelectorSpecs
     {
@@ -659,15 +659,15 @@ namespace FluentAssertions.Specs.Types
         }
 
         [Fact]
-        public void When_unwrap_task_types_it_should_return_the_correct_types()
+        public async Task When_unwrap_task_types_it_should_return_the_correct_types()
         {
             IEnumerable<Type> types = typeof(ClassToExploreUnwrappedTaskTypes)
                 .Methods()
                 .ReturnTypes()
                 .UnwrapTaskTypes();
 
-            types.Should()
-                .BeEquivalentTo(new[] { typeof(int), typeof(void), typeof(void), typeof(string), typeof(bool) });
+            await types.Should()
+                .BeEquivalentToAsync(new[] { typeof(int), typeof(void), typeof(void), typeof(string), typeof(bool) });
         }
 
         [Fact]

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Xml;
-using FluentAssertions.Execution;
+using FluentAssertionsAsync.Execution;
 using Xunit;
 using Xunit.Sdk;
 
-namespace FluentAssertions.Specs.Xml;
+namespace FluentAssertionsAsync.Specs.Xml;
 
 public class XmlElementAssertionSpecs
 {

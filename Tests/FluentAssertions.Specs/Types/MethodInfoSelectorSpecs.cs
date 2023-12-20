@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
-using FluentAssertions.Types;
+using FluentAssertionsAsync.Types;
 using Internal.Main.Test;
 using Xunit;
 
-namespace FluentAssertions.Specs.Types;
+namespace FluentAssertionsAsync.Specs.Types;
 
 public class MethodInfoSelectorSpecs
 {

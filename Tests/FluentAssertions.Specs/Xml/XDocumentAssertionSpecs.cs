@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Xml.Linq;
-using FluentAssertions.Execution;
-using FluentAssertions.Formatting;
+using FluentAssertionsAsync.Execution;
+using FluentAssertionsAsync.Formatting;
 using Xunit;
 using Xunit.Sdk;
 
-namespace FluentAssertions.Specs.Xml;
+namespace FluentAssertionsAsync.Specs.Xml;
 
 public class XDocumentAssertionSpecs
 {

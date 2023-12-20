@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
-using FluentAssertions.Execution;
+using FluentAssertionsAsync.Execution;
 using Xunit;
 using Xunit.Sdk;
 
-namespace FluentAssertions.Specs.Streams;
+namespace FluentAssertionsAsync.Specs.Streams;
 
 public class StreamAssertionSpecs
 {

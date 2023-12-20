@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using FluentAssertions;
-using FluentAssertions.Common;
-using FluentAssertions.Execution;
+using FluentAssertionsAsync;
+using FluentAssertionsAsync.Common;
+using FluentAssertionsAsync.Execution;
 using Xunit;
 using Xunit.Sdk;
 
-namespace FluentAssertions.Specs.Execution
+namespace FluentAssertionsAsync.Specs.Execution
 {
     /// <summary>
     /// Type <see cref="AssertionScope"/> specs.
@@ -253,7 +253,7 @@ namespace FluentAssertions.Specs.Execution
         }
 
         [Fact]
-        public void Formatting_options_passed_to_inner_assertion_scopes()
+        public async Task Formatting_options_passed_to_inner_assertion_scopes()
         {
             // Arrange
             var subject = new[]
@@ -279,7 +279,7 @@ namespace FluentAssertions.Specs.Execution
             // Act
             using var scope = new AssertionScope();
             scope.FormattingOptions.MaxDepth = 1;
-            subject.Should().BeEquivalentTo(expected);
+            await subject.Should().BeEquivalentToAsync(expected);
 
             // Assert
             scope.Discard().Should().ContainSingle()

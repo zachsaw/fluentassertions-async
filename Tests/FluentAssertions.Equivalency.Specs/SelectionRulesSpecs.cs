@@ -1,22 +1,23 @@
 ﻿using System;
-using FluentAssertions.Equivalency.Matching;
-using FluentAssertions.Equivalency.Ordering;
-using FluentAssertions.Equivalency.Selection;
+using System.Threading.Tasks;
+using FluentAssertionsAsync.Equivalency.Matching;
+using FluentAssertionsAsync.Equivalency.Ordering;
+using FluentAssertionsAsync.Equivalency.Selection;
 using Xunit;
 
-namespace FluentAssertions.Equivalency.Specs;
+namespace FluentAssertionsAsync.Equivalency.Specs;
 
 public partial class SelectionRulesSpecs
 {
     [Fact]
-    public void Public_methods_follow_fluent_syntax()
+    public async Task Public_methods_follow_fluent_syntax()
     {
         // Arrange
         var subject = new Root();
         var expected = new RootDto();
 
         // Act / Assert
-        subject.Should().BeEquivalentTo(expected,
+        await subject.Should().BeEquivalentToAsync(expected,
             options => options
                 .AllowingInfiniteRecursion()
                 .ComparingByMembers(typeof(Root))

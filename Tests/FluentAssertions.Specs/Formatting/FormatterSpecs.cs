@@ -4,14 +4,14 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using FluentAssertions.Common;
-using FluentAssertions.Extensions;
-using FluentAssertions.Formatting;
-using FluentAssertions.Specs.Common;
+using FluentAssertionsAsync.Common;
+using FluentAssertionsAsync.Extensions;
+using FluentAssertionsAsync.Formatting;
+using FluentAssertionsAsync.Specs.Common;
 using Xunit;
 using Xunit.Sdk;
 
-namespace FluentAssertions.Specs.Formatting;
+namespace FluentAssertionsAsync.Specs.Formatting;
 
 [Collection("FormatterSpecs")]
 public class FormatterSpecs
@@ -215,13 +215,13 @@ public class FormatterSpecs
             """
             Expected stuff to be equal to 
             {
-                FluentAssertions.Specs.Formatting.FormatterSpecs+Stuff`1[[System.Int32*]]
+                FluentAssertionsAsync.Specs.Formatting.FormatterSpecs+Stuff`1[[System.Int32*]]
                 {
                     Children = {1, 2, 3, 4}, 
                     Description = "Stuff_1", 
                     StuffId = 1
                 }, 
-                FluentAssertions.Specs.Formatting.FormatterSpecs+Stuff`1[[System.Int32*]]
+                FluentAssertionsAsync.Specs.Formatting.FormatterSpecs+Stuff`1[[System.Int32*]]
                 {
                     Children = {1, 2, 3, 4}, 
                     Description = "WRONG_DESCRIPTION", 
@@ -229,13 +229,13 @@ public class FormatterSpecs
                 }
             }, but 
             {
-                FluentAssertions.Specs.Formatting.FormatterSpecs+Stuff`1[[System.Int32*]]
+                FluentAssertionsAsync.Specs.Formatting.FormatterSpecs+Stuff`1[[System.Int32*]]
                 {
                     Children = {1, 2, 3, 4}, 
                     Description = "Stuff_1", 
                     StuffId = 1
                 }, 
-                FluentAssertions.Specs.Formatting.FormatterSpecs+Stuff`1[[System.Int32*]]
+                FluentAssertionsAsync.Specs.Formatting.FormatterSpecs+Stuff`1[[System.Int32*]]
                 {
                     Children = {1, 2, 3, 4}, 
                     Description = "Stuff_2", 
@@ -258,12 +258,12 @@ public class FormatterSpecs
         act.Should().Throw<XunitException>()
             .Which.Message.Should().Be(
             """
-            Expected stuff to be <null>, but found FluentAssertions.Specs.Formatting.FormatterSpecs+StuffRecord
+            Expected stuff to be <null>, but found FluentAssertionsAsync.Specs.Formatting.FormatterSpecs+StuffRecord
             {
                 RecordChildren = {10, 20, 30, 40}, 
                 RecordDescription = "description", 
                 RecordId = 42, 
-                SingleChild = FluentAssertions.Specs.Formatting.FormatterSpecs+ChildRecord
+                SingleChild = FluentAssertionsAsync.Specs.Formatting.FormatterSpecs+ChildRecord
                 {
                     ChildRecordId = 24
                 }
@@ -315,7 +315,7 @@ public class FormatterSpecs
     }
 
     [Fact]
-    public void When_the_object_is_a_list_of_anonymous_type_it_should_show_the_properties_recursively_with_newlines_and_indentation()
+    public async Task When_the_object_is_a_list_of_anonymous_type_it_should_show_the_properties_recursively_with_newlines_and_indentation()
     {
         // Arrange
         var stuff = new[]
@@ -343,10 +343,10 @@ public class FormatterSpecs
         };
 
         // Act
-        Action act = () => stuff.Should().BeEquivalentTo(expectedStuff);
+        Func<Task> act = () => stuff.Should().BeEquivalentToAsync(expectedStuff);
 
         // Assert
-        act.Should().Throw<XunitException>()
+        (await act.Should().ThrowAsync<XunitException>())
             .Which.Message.Should().StartWith(
             """
             Expected stuff to be a collection with 1 item(s), but 
@@ -446,12 +446,12 @@ public class FormatterSpecs
             Expected stuff to be 
             {
                 RecordDescription = "WRONG_DESCRIPTION"
-            }, but found FluentAssertions.Specs.Formatting.FormatterSpecs+StuffRecord
+            }, but found FluentAssertionsAsync.Specs.Formatting.FormatterSpecs+StuffRecord
             {
                 RecordChildren = {4, 5, 6, 7}, 
                 RecordDescription = "descriptive", 
                 RecordId = 9, 
-                SingleChild = FluentAssertions.Specs.Formatting.FormatterSpecs+ChildRecord
+                SingleChild = FluentAssertionsAsync.Specs.Formatting.FormatterSpecs+ChildRecord
                 {
                     ChildRecordId = 80
                 }
@@ -916,8 +916,8 @@ public class FormatterSpecs
         string result = Formatter.ToString(subject, new FormattingOptions { UseLineBreaks = true });
 
         // Assert
-        result.Should().Contain($"FluentAssertions.Specs.Formatting.FormatterSpecs+A, {Environment.NewLine}");
-        result.Should().Contain($"FluentAssertions.Specs.Formatting.FormatterSpecs+B{Environment.NewLine}");
+        result.Should().Contain($"FluentAssertionsAsync.Specs.Formatting.FormatterSpecs+A, {Environment.NewLine}");
+        result.Should().Contain($"FluentAssertionsAsync.Specs.Formatting.FormatterSpecs+B{Environment.NewLine}");
     }
 
     public class BaseStuff
@@ -1024,7 +1024,7 @@ public class FormatterSpecs
     public void When_no_custom_formatter_exists_in_the_specified_assembly_it_should_use_the_default()
     {
         // Arrange
-        Configuration.Current.ValueFormatterAssembly = "FluentAssertions";
+        Configuration.Current.ValueFormatterAssembly = "FluentAssertionsAsync";
 
         var subject = new SomeClassWithCustomFormatter
         {
@@ -1199,7 +1199,7 @@ public class FormatterSpecs
         string str = Formatter.ToString(values);
 
         str.Should().Match(Environment.NewLine +
-            "{*FluentAssertions*FormatterSpecs+CustomClass" + Environment.NewLine +
+            "{*FluentAssertionsAsync*FormatterSpecs+CustomClass" + Environment.NewLine +
             "    {" + Environment.NewLine +
             "        IntProperty = 1, " + Environment.NewLine +
             "        StringProperty = <null>" + Environment.NewLine +

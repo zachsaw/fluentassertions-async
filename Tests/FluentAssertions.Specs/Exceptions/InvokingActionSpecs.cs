@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace FluentAssertions.Specs.Exceptions;
+namespace FluentAssertionsAsync.Specs.Exceptions;
 
 public class InvokingActionSpecs
 {

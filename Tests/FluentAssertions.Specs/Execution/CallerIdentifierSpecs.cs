@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
-using FluentAssertions;
-using FluentAssertions.Equivalency;
-using FluentAssertions.Execution;
-using FluentAssertions.Extensions;
+using FluentAssertionsAsync;
+using FluentAssertionsAsync.Equivalency;
+using FluentAssertionsAsync.Execution;
+using FluentAssertionsAsync.Extensions;
 using Xunit;
 using Xunit.Sdk;
 
 #pragma warning disable RCS1192, RCS1214, S4144 // verbatim string literals and interpolated strings
 
-namespace FluentAssertions.Specs.Execution
+namespace FluentAssertionsAsync.Specs.Execution
 {
     public class CallerIdentifierSpecs
     {

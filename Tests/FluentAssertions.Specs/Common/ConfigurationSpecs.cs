@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using FluentAssertions.Common;
+using FluentAssertionsAsync.Common;
 using Xunit;
 
-namespace FluentAssertions.Specs.Common;
+namespace FluentAssertionsAsync.Specs.Common;
 
 public class ConfigurationSpecs
 {

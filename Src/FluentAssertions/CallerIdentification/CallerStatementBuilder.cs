@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace FluentAssertions.CallerIdentification;
+namespace FluentAssertionsAsync.CallerIdentification;
 
 internal class CallerStatementBuilder
 {
@@ -21,8 +21,9 @@ internal class CallerStatementBuilder
             new SingleLineCommentParsingStrategy(),
             new SemicolonParsingStrategy(),
             new ShouldCallParsingStrategy(),
+            new OpenParensAwaitParsingStrategy(),
             new AwaitParsingStrategy(),
-            new AddNonEmptySymbolParsingStrategy()
+            new AddNonEmptySymbolParsingStrategy(),
         };
     }
 

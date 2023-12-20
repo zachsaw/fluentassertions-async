@@ -1,10 +1,10 @@
 ﻿using System;
-using FluentAssertions.Common;
-using FluentAssertions.Extensions;
+using FluentAssertionsAsync.Common;
+using FluentAssertionsAsync.Extensions;
 using Xunit;
 using Xunit.Sdk;
 
-namespace FluentAssertions.Specs.Primitives;
+namespace FluentAssertionsAsync.Specs.Primitives;
 
 public partial class DateTimeOffsetAssertionSpecs
 {

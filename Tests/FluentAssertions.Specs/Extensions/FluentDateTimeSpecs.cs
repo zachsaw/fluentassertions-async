@@ -1,9 +1,9 @@
 ﻿using System;
-using FluentAssertions.Common;
-using FluentAssertions.Extensions;
+using FluentAssertionsAsync.Common;
+using FluentAssertionsAsync.Extensions;
 using Xunit;
 
-namespace FluentAssertions.Specs.Extensions;
+namespace FluentAssertionsAsync.Specs.Extensions;
 
 public class FluentDateTimeSpecs
 {

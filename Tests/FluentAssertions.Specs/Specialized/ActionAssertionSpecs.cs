@@ -1,7 +1,7 @@
 ﻿using System;
 using Xunit;
 
-namespace FluentAssertions.Specs.Specialized;
+namespace FluentAssertionsAsync.Specs.Specialized;
 
 public class ActionAssertionSpecs
 {

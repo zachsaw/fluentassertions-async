@@ -1,10 +1,10 @@
 ﻿using System;
-using FluentAssertions.Extensions;
-using FluentAssertions.Primitives;
+using FluentAssertionsAsync.Extensions;
+using FluentAssertionsAsync.Primitives;
 using Xunit;
 using Xunit.Sdk;
 
-namespace FluentAssertions.Specs.Primitives;
+namespace FluentAssertionsAsync.Specs.Primitives;
 
 public class SimpleTimeSpanAssertionSpecs
 {

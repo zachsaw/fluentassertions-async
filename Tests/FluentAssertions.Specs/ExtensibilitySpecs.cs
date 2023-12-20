@@ -3,7 +3,7 @@ using ExampleExtensions;
 using Xunit;
 using Xunit.Sdk;
 
-namespace FluentAssertions.Specs;
+namespace FluentAssertionsAsync.Specs;
 
 public class ExtensibilitySpecs
 {

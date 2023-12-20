@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Xunit;
 using Xunit.Sdk;
 
-namespace FluentAssertions.Equivalency.Specs;
+namespace FluentAssertionsAsync.Equivalency.Specs;
 
 public class DateTimePropertiesSpecs
 {
     [Fact]
-    public void When_two_properties_are_datetime_and_both_are_nullable_and_both_are_null_it_should_succeed()
+    public async Task When_two_properties_are_datetime_and_both_are_nullable_and_both_are_null_it_should_succeed()
     {
         // Arrange
         var subject =
@@ -17,15 +18,14 @@ public class DateTimePropertiesSpecs
             new { Time = (DateTime?)null };
 
         // Act
-        Action act = () =>
-            subject.Should().BeEquivalentTo(other);
+        Func<Task> act = async () => await subject.Should().BeEquivalentToAsync(other);
 
         // Assert
-        act.Should().NotThrow();
+        await act.Should().NotThrowAsync();
     }
 
     [Fact]
-    public void When_two_properties_are_datetime_and_both_are_nullable_and_are_equal_it_should_succeed()
+    public async Task When_two_properties_are_datetime_and_both_are_nullable_and_are_equal_it_should_succeed()
     {
         // Arrange
         var subject =
@@ -35,14 +35,14 @@ public class DateTimePropertiesSpecs
             new { Time = (DateTime?)new DateTime(2013, 12, 9, 15, 58, 0) };
 
         // Act
-        Action act = () => subject.Should().BeEquivalentTo(other);
+        Func<Task> act = async () => await subject.Should().BeEquivalentToAsync(other);
 
         // Assert
-        act.Should().NotThrow();
+        await act.Should().NotThrowAsync();
     }
 
     [Fact]
-    public void
+    public async Task
         When_two_properties_are_datetime_and_both_are_nullable_and_expectation_is_null_it_should_throw_and_state_the_difference()
     {
         // Arrange
@@ -53,15 +53,15 @@ public class DateTimePropertiesSpecs
             new { Time = (DateTime?)null };
 
         // Act
-        Action act = () => subject.Should().BeEquivalentTo(other);
+        Func<Task> act = async () => await subject.Should().BeEquivalentToAsync(other);
 
         // Assert
-        act.Should().Throw<XunitException>().WithMessage(
+        await act.Should().ThrowAsync<XunitException>().WithMessage(
             "Expected*Time to be <null>, but found <2013-12-09 15:58:00>.*");
     }
 
     [Fact]
-    public void
+    public async Task
         When_two_properties_are_datetime_and_both_are_nullable_and_subject_is_null_it_should_throw_and_state_the_difference()
     {
         // Arrange
@@ -72,15 +72,15 @@ public class DateTimePropertiesSpecs
             new { Time = (DateTime?)new DateTime(2013, 12, 9, 15, 58, 0) };
 
         // Act
-        Action act = () => subject.Should().BeEquivalentTo(other);
+        Func<Task> act = async () => await subject.Should().BeEquivalentToAsync(other);
 
         // Assert
-        act.Should().Throw<XunitException>().WithMessage(
+        await act.Should().ThrowAsync<XunitException>().WithMessage(
             "Expected*Time*to be <2013-12-09 15:58:00>, but found <null>.*");
     }
 
     [Fact]
-    public void When_two_properties_are_datetime_and_expectation_is_nullable_and_are_equal_it_should_succeed()
+    public async Task When_two_properties_are_datetime_and_expectation_is_nullable_and_are_equal_it_should_succeed()
     {
         // Arrange
         var subject =
@@ -90,14 +90,14 @@ public class DateTimePropertiesSpecs
             new { Time = (DateTime?)new DateTime(2013, 12, 9, 15, 58, 0) };
 
         // Act
-        Action act = () => subject.Should().BeEquivalentTo(other);
+        Func<Task> act = async () => await subject.Should().BeEquivalentToAsync(other);
 
         // Assert
-        act.Should().NotThrow();
+        await act.Should().NotThrowAsync();
     }
 
     [Fact]
-    public void
+    public async Task
         When_two_properties_are_datetime_and_expectation_is_nullable_and_expectation_is_null_it_should_throw_and_state_the_difference()
     {
         // Arrange
@@ -108,15 +108,15 @@ public class DateTimePropertiesSpecs
             new { Time = (DateTime?)null };
 
         // Act
-        Action act = () => subject.Should().BeEquivalentTo(other);
+        Func<Task> act = async () => await subject.Should().BeEquivalentToAsync(other);
 
         // Assert
-        act.Should().Throw<XunitException>().WithMessage(
+        await act.Should().ThrowAsync<XunitException>().WithMessage(
             "Expected*Time*to be <null>, but found <2013-12-09 15:58:00>.*");
     }
 
     [Fact]
-    public void When_two_properties_are_datetime_and_subject_is_nullable_and_are_equal_it_should_succeed()
+    public async Task When_two_properties_are_datetime_and_subject_is_nullable_and_are_equal_it_should_succeed()
     {
         // Arrange
         var subject =
@@ -126,14 +126,14 @@ public class DateTimePropertiesSpecs
             new { Time = new DateTime(2013, 12, 9, 15, 58, 0) };
 
         // Act
-        Action act = () => subject.Should().BeEquivalentTo(other);
+        Func<Task> act = async () => await subject.Should().BeEquivalentToAsync(other);
 
         // Assert
-        act.Should().NotThrow();
+        await act.Should().NotThrowAsync();
     }
 
     [Fact]
-    public void
+    public async Task
         When_two_properties_are_datetime_and_subject_is_nullable_and_subject_is_null_it_should_throw_and_state_the_difference()
     {
         // Arrange
@@ -144,10 +144,10 @@ public class DateTimePropertiesSpecs
             new { Time = new DateTime(2013, 12, 9, 15, 58, 0) };
 
         // Act
-        Action act = () => subject.Should().BeEquivalentTo(other);
+        Func<Task> act = async () => await subject.Should().BeEquivalentToAsync(other);
 
         // Assert
-        act.Should().Throw<XunitException>().WithMessage(
+        await act.Should().ThrowAsync<XunitException>().WithMessage(
             "Expected*Time*to be <2013-12-09 15:58:00>, but found <null>.*");
     }
 }

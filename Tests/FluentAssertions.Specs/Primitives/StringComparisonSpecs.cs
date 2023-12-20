@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using FluentAssertions.Equivalency;
-using FluentAssertions.Equivalency.Execution;
-using FluentAssertions.Execution;
-using FluentAssertions.Specs.CultureAwareTesting;
+using FluentAssertionsAsync.Equivalency;
+using FluentAssertionsAsync.Equivalency.Execution;
+using FluentAssertionsAsync.Execution;
+using FluentAssertionsAsync.Specs.CultureAwareTesting;
 using Xunit;
 using Xunit.Sdk;
 
-namespace FluentAssertions.Specs.Primitives;
+namespace FluentAssertionsAsync.Specs.Primitives;
 
 [Collection(nameof(StringComparisonSpecs))]
 public class StringComparisonSpecs

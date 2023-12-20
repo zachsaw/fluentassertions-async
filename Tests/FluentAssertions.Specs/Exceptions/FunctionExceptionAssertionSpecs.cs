@@ -1,13 +1,13 @@
 ﻿using System;
-using FluentAssertions.Execution;
-using FluentAssertions.Extensions;
+using FluentAssertionsAsync.Execution;
+using FluentAssertionsAsync.Extensions;
 #if NET47
-using FluentAssertions.Specs.Common;
+using FluentAssertionsAsync.Specs.Common;
 #endif
 using Xunit;
 using Xunit.Sdk;
 
-namespace FluentAssertions.Specs.Exceptions;
+namespace FluentAssertionsAsync.Specs.Exceptions;
 
 public class FunctionExceptionAssertionSpecs
 {
