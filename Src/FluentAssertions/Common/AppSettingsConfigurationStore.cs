@@ -4,7 +4,6 @@
 // https://docs.microsoft.com/en-us/dotnet/api/system.configuration.configurationmanager?view=netframework-4.8
 
 using System.Configuration;
-using FluentAssertionsAsync.Common;
 
 namespace FluentAssertionsAsync.Common;
 
