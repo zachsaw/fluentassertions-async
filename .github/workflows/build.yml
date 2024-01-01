@@ -34,13 +34,6 @@ jobs:
       with:
         files: "TestResults/reports/lcov.info"
 
-    - name: coveralls
-      uses: coverallsapp/github-action@v2
-      if: steps.check_files.outputs.files_exists == 'true'
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        file: TestResults/reports/lcov.info
-
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
       with:
